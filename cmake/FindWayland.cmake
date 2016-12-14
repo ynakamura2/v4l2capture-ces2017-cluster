@@ -1,0 +1,27 @@
+FIND_PATH(WAYLAND_CLIENT_INCLUDE_DIR /wayland-client.h
+/usr/include
+)
+
+FIND_LIBRARY(WAYLAND_CLIENT_LIBRARY
+NAMES wayland-client
+PATHS  /home/denso/weeklybuild/e09/imx-drv-src/gpu-viv-src-mx6q/driver/wl_extra/lib
+)
+
+FIND_LIBRARY(WAYLAND_EGL_LIBRARY
+NAMES wayland-egl
+PATHS  /home/denso/weeklybuild/e09/imx-drv-libs/gpu-viv-bin-mx6q/hardfp/usr/lib
+)
+SET(WAYLAND_FOUND "NO")
+
+IF(WAYLAND_CLIENT_LIBRARY AND WAYLAND_EGL_LIBRARY)
+    SET(WAYLAND_FOUND "YES")
+    MESSAGE(STATUS "Found Wayland-Client libs: ${WAYLAND_CLIENT_LIBRARY}")
+    MESSAGE(STATUS "Found Wayland-Client include: ${WAYLAND_CLIENT_INCLUDE_DIR}")
+    MESSAGE(STATUS "Found Wayland-Egl libs: ${WAYLAND_EGL_LIBRARY}")
+ENDIF(WAYLAND_CLIENT_LIBRARY AND WAYLAND_EGL_LIBRARY)
+
+MARK_AS_ADVANCED(
+    WAYLAND_CLIENT_INCLUDE_DIR
+    WAYLAND_CLIENT_LIBRARY
+    WAYLAND_EGL_LIBRARY
+)
